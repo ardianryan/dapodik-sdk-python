@@ -184,8 +184,14 @@ for batch in client.iterate_peserta_didik(limit=100):
 
 ---
 
-## 📄 Lisensi & Kontributor
+## ⚖️ Lisensi & Ketentuan Penggunaan Non-Komersial
 
-- **Lisensi**: [MIT License](LICENSE) &copy; 2026 **Ryan Ardian, SMA Negeri 1 Gedeg (smansage)**.
-- **Pengembang**: **Ryan Ardian** ([inisaya@ardianryan.com](mailto:inisaya@ardianryan.com)).
-- **Inspirasi & Atribusi**: Adaptasi pustaka PHP Dapodik oleh **Ade Reksi Susanto** ([`adereksisusanto/dapodik-api-php`](https://github.com/adereksisusanto/dapodik-api-php)).
+Proyek ini dirilis di bawah lisensi **[MIT License with Non-Commercial Restriction (MIT-NC)](LICENSE)**.
+
+### 📌 Ketentuan Penggunaan:
+1. **100% Gratis untuk Pendidikan**: Pustaka ini sepenuhnya **gratis** digunakan oleh seluruh sekolah, guru, operator, siswa, akademisi, dan lembaga pendidikan di Indonesia.
+2. **Dilarang untuk Tujuan Komersial (Non-Commercial Only)**:
+   - Dilarang keras memperjualbelikan, memonetisasi, menjual kembali (*reselling*), atau mengemas SDK ini ke dalam produk perangkat lunak berbayar / layanan berbayar pihak ketiga tanpa izin tertulis dari pemegang hak cipta (**Ryan Ardian & SMA Negeri 1 Gedeg**).
+3. **Atribusi Hak Cipta**:
+   - Hak Cipta &copy; 2026 **Ryan Ardian** ([inisaya@ardianryan.com](mailto:inisaya@ardianryan.com)) & **SMA Negeri 1 Gedeg** ([@smansagewithai](https://www.instagram.com/smansagewithai/)).
+   - Inspirasi & Atribusi Dasar: Adaptasi pustaka PHP Dapodik oleh **Ade Reksi Susanto** ([`adereksisusanto/dapodik-api-php`](https://github.com/adereksisusanto/dapodik-api-php)).
