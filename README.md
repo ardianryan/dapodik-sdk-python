@@ -23,6 +23,17 @@
 
 ---
 
+> [!IMPORTANT]
+> ### 📢 Pernyataan Penyangkalan (Disclaimer) & Misi Terbuka
+> **`dapodik-sdk` adalah pustaka *Unofficial* (tidak resmi) dan independen.** Pustaka ini dikembangkan sebagai inisiatif komunitas sumber terbuka (*open-source*) oleh **SMA Negeri 1 Gedeg** dan **Ryan Ardian**, tanpa afiliasi langsung secara struktural dengan Kementerian Pendidikan Dasar dan Menengah (Kemendikdasmen).
+>
+> **Tujuan & Misi Pengembangan**:
+> Pustaka ini lahir atas semangat memajukan transformasi digital dan interoperabilitas sistem pendidikan di Indonesia. Tujuan utamanya adalah **memberdayakan para pengembang perangkat lunak lintas platform dan multi-bahasa pemrograman** (Python, TypeScript, Node.js, PHP, Laravel, dll.) agar dapat mengintegrasikan sistem informasi sekolah, LMS, E-Rapor, presensi cerdas, serta analitik data pendidikan secara lebih cepat, aman, terstandarisasi, dan terbebas dari kompleksitas teknis protokol WebService lokal Dapodik.
+>
+> Seluruh hak cipta nama, logo, dan merek dagang **Dapodik (Data Pokok Pendidikan)** adalah milik sah **Kementerian Pendidikan Dasar dan Menengah Republik Indonesia**.
+
+---
+
 ## 🏛️ Latar Belakang & Referensi
 
 Pustaka ini merupakan modernisasi dan porting ekosistem **Python** yang mengadaptasi spesifikasi integrasi WebService Dapodik dari repositori referensi karya **Ade Reksi Susanto** ([`adereksisusanto/dapodik-api-php`](https://github.com/adereksisusanto/dapodik-api-php)).
