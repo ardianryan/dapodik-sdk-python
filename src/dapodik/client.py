@@ -35,8 +35,13 @@ class DapodikClient:
     ):
         if not npsn or not str(npsn).strip():
             raise DapodikError("NPSN wajib diisi")
+        if "\r" in str(npsn) or "\n" in str(npsn):
+            raise DapodikError("NPSN tidak boleh mengandung karakter newline")
+
         if not token or not str(token).strip():
             raise DapodikError("Token WebService Dapodik wajib diisi")
+        if "\r" in str(token) or "\n" in str(token):
+            raise DapodikError("Token tidak boleh mengandung karakter newline (CRLF injection prevention)")
 
         self.npsn = str(npsn).strip()
         self.token = str(token).strip()
@@ -61,6 +66,9 @@ class DapodikClient:
         Mengirim HTTP Request ke endpoint WebService Dapodik.
         """
         clean_endpoint = endpoint.lstrip("/")
+        if ".." in clean_endpoint or "\\" in clean_endpoint:
+            raise DapodikError("Endpoint tidak valid (path traversal detected)")
+
         query_dict = {"npsn": self.npsn}
         if params:
             query_dict.update({k: v for k, v in params.items() if v is not None})
