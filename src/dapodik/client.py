@@ -193,6 +193,14 @@ class DapodikClient:
             q["semester_id"] = semester_id
         return self.request("GET", "getMatevNilai", q)
 
+    def get_prasarana(self, page: int = 1, limit: Optional[int] = None, **params: Any) -> DapodikResponse:
+        """Menarik data prasarana (tanah, bangunan, dan ruang sekolah)."""
+        q = {"page": page}
+        if limit:
+            q["limit"] = limit
+        q.update(params)
+        return self.request("GET", "getPrasarana", q)
+
     # =========================================================================
     # Endpoint Tulis (POST)
     # =========================================================================
@@ -287,6 +295,48 @@ class DapodikClient:
 
         return DapodikResponse(all_rows)
 
+    def iterate_prasarana(self, limit: int = 100, **params: Any) -> Generator[List[Dict[str, Any]], None, None]:
+        """Generator stream per-batch halaman prasarana untuk efisiensi RAM."""
+        page = 1
+        while True:
+            resp = self.get_prasarana(page=page, limit=limit, **params)
+            if not resp.rows:
+                break
+            yield resp.rows
+            if len(resp.rows) < limit:
+                break
+            page += 1
+
+    def fetch_all_prasarana(
+        self,
+        limit: int = 100,
+        delay_seconds: float = 0.0,
+        on_progress: Optional[Callable[[int, int, int], None]] = None,
+        **params: Any,
+    ) -> DapodikResponse:
+        """Menarik seluruh data prasarana (tanah, bangunan, ruang) secara otomatis melintasi banyak halaman."""
+        all_rows: List[Dict[str, Any]] = []
+        page = 1
+
+        while True:
+            resp = self.get_prasarana(page=page, limit=limit, **params)
+            count = len(resp.rows)
+            if count == 0:
+                break
+
+            all_rows.extend(resp.rows)
+            if on_progress:
+                on_progress(page, count, len(all_rows))
+
+            if count < limit:
+                break
+
+            page += 1
+            if delay_seconds > 0:
+                time.sleep(delay_seconds)
+
+        return DapodikResponse(all_rows)
+
     # =========================================================================
     # Aliases
     # =========================================================================
@@ -305,6 +355,9 @@ class DapodikClient:
 
     def pd(self, page: int = 1, limit: Optional[int] = None, **params: Any) -> DapodikResponse:
         return self.get_peserta_didik(page=page, limit=limit, **params)
+
+    def prasarana(self, page: int = 1, limit: Optional[int] = None, **params: Any) -> DapodikResponse:
+        return self.get_prasarana(page=page, limit=limit, **params)
 
     def mata_pelajaran(self, semester_id: Optional[str] = None, **params: Any) -> DapodikResponse:
         return self.get_mata_pelajaran(semester_id=semester_id, **params)

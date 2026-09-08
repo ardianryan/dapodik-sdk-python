@@ -146,6 +146,33 @@ class TestDapodikClient(unittest.TestCase):
         self.assertIsInstance(client, DapodikClient)
         self.assertEqual(client.npsn, "20300001")
 
+    @patch("urllib.request.urlopen")
+    def test_get_prasarana_and_alias(self, mock_urlopen):
+        mock_resp = MagicMock()
+        mock_resp.getcode.return_value = 200
+        mock_resp.read.return_value = json.dumps({
+            "status": "success",
+            "results": 1,
+            "rows": [
+                {
+                    "id_tanah": "t-1",
+                    "nama": "Tanah Sekolah",
+                    "bangunan": [
+                        {"id_bangunan": "b-1", "nama": "Gedung A"}
+                    ]
+                }
+            ]
+        }).encode("utf-8")
+        mock_resp.__enter__.return_value = mock_resp
+        mock_urlopen.return_value = mock_resp
+
+        res = self.client.get_prasarana(page=1)
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res.first["nama"], "Tanah Sekolah")
+
+        alias_res = self.client.prasarana()
+        self.assertEqual(alias_res.first["id_tanah"], "t-1")
+
 
 if __name__ == "__main__":
     unittest.main()
