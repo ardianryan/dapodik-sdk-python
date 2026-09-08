@@ -177,6 +177,7 @@ for batch in client.iterate_peserta_didik(limit=100):
 | **`/getGtk`** | `client.get_gtk(page, limit)` | `client.gtk()` | Data Guru & Tenaga Kependidikan |
 | **`/getRombonganBelajar`** | `client.get_rombongan_belajar(sem)` | `client.rombel()` | Data rombel beserta anggota & mapel |
 | **`/getPesertaDidik`** | `client.get_peserta_didik(page, limit)` | `client.pd()` | Data seluruh siswa lengkap |
+| **`/getPrasarana`** | `client.get_prasarana(page, limit)` | `client.prasarana()` | Data sarana & prasarana (Tanah, Bangunan & Ruang) |
 | **`/getMataPelajaran`** | `client.get_mata_pelajaran(sem)` | `client.mata_pelajaran()` | Referensi mata pelajaran nasional |
 | **`/getMatevNilai`** | `client.get_matev_nilai(sem)` | `client.matev_nilai()` | Referensi mata evaluasi nilai |
 | **`/postNilai`** | `client.post_nilai(body, table)` | - | Pengiriman nilai rapor (HTTP POST) |

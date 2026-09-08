@@ -6,6 +6,15 @@ Format changelog ini mengacu pada [Keep a Changelog](https://keepachangelog.com/
 
 ---
 
+## [1.1.0] - 2026-09-08
+
+### Ditambahkan
+- **Dukungan Endpoint Resmi `/getPrasarana`**:
+  - Penambahan method `get_prasarana(page, limit)` dan alias `prasarana()`.
+  - Penambahan helper `fetch_all_prasarana(limit, delay_s, on_progress)` dan generator `iterate_prasarana(limit)`.
+  - Integrasi dengan ekspor Pandas DataFrame `to_dataframe()`.
+  - Penambahan unit test unittest dengan 100% lulus.
+
 ## [1.0.0] - 2026-08-30
 
 ### Ditambahkan
