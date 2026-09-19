@@ -141,9 +141,7 @@ class DapodikClient:
 
         return DapodikResponse(rows, parsed if isinstance(parsed, dict) else {})
 
-    # =========================================================================
     # Endpoint Standar (GET)
-    # =========================================================================
 
     def get_sekolah(self, semester_id: Optional[str] = None, **params: Any) -> DapodikResponse:
         """Menarik profil dan perizinan operasional sekolah."""
@@ -201,9 +199,7 @@ class DapodikClient:
         q.update(params)
         return self.request("GET", "getPrasarana", q)
 
-    # =========================================================================
     # Endpoint Tulis (POST)
-    # =========================================================================
 
     def post(self, endpoint: str, body: Any, **params: Any) -> DapodikResponse:
         """Mengirim data via HTTP POST ke WebService Dapodik."""
@@ -219,9 +215,7 @@ class DapodikClient:
         p["table"] = table
         return self.post("postNilai", body, **p)
 
-    # =========================================================================
     # Auto-Pagination & Streaming Generators
-    # =========================================================================
 
     def iterate_peserta_didik(self, limit: int = 100, **params: Any) -> Generator[List[Dict[str, Any]], None, None]:
         """Generator stream per-batch halaman siswa untuk efisiensi RAM."""
@@ -337,9 +331,7 @@ class DapodikClient:
 
         return DapodikResponse(all_rows)
 
-    # =========================================================================
     # Aliases
-    # =========================================================================
 
     def sekolah(self, semester_id: Optional[str] = None, **params: Any) -> DapodikResponse:
         return self.get_sekolah(semester_id=semester_id, **params)
